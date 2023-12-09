@@ -1,9 +1,10 @@
 const { ethers } = require("ethers");
+require('dotenv').config(); // Đọc các biến môi trường từ file .env
 
-const INFURA_ID = ''
-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+const API_KEY = process.env.ALCHEMY_API_KEY
+const provider = new ethers.providers.JsonRpcProvider(`https://eth-goerli.g.alchemy.com/v2/${API_KEY}`)
 
-const address = '0x73BCEb1Cd57C711feaC4224D062b0F6ff338501e'
+const address = process.env.FROM_ADDRESS
 
 const main = async () => {
     const balance = await provider.getBalance(address)

@@ -1,7 +1,8 @@
 const { ethers } = require("ethers");
+require('dotenv').config(); // Đọc các biến môi trường từ file .env
 
-const INFURA_ID = ''
-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+const API_KEY = process.env.ALCHEMY_API_KEY
+const provider = new ethers.providers.JsonRpcProvider(`https://eth-goerli.g.alchemy.com/v2/${API_KEY}`)
 
 const ERC20_ABI = [
     "function name() view returns (string)",
@@ -10,7 +11,7 @@ const ERC20_ABI = [
     "function balanceOf(address) view returns (uint)",
 ];
 
-const address = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
+const address = '0x07865c6E87B9F70255377e024ace6630C1Eaa37F' // token Contract
 const contract = new ethers.Contract(address, ERC20_ABI, provider)
 
 const main = async () => {
@@ -23,7 +24,7 @@ const main = async () => {
     console.log(`Symbol: ${symbol}`)
     console.log(`Total Supply: ${totalSupply}\n`)
 
-    const balance = await contract.balanceOf('0x6c6Bc977E13Df9b0de53b251522280BB72383700')
+    const balance = await contract.balanceOf('0x8327AD5BaBd5dc3d7cAdBbE2DC17A77d1fa60Ab5')
 
     console.log(`Balance Returned: ${balance}`)
     console.log(`Balance Formatted: ${ethers.utils.formatEther(balance)}\n`)
