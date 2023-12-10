@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-require('dotenv').config(); // Đọc các biến môi trường từ file .env
+require('dotenv').config(); 
 
 const API_KEY = process.env.ALCHEMY_API_KEY
 const provider = new ethers.providers.JsonRpcProvider(`https://eth-goerli.g.alchemy.com/v2/${API_KEY}`)
